@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleIconFile</key>
+	<string>Voz</string>
+	<key>CFBundleIconName</key>
+	<string>Voz</string>
+	<!-- These MUST stay as build-setting substitutions, never literals. Hardcoded
+	     here, bumping MARKETING_VERSION / CURRENT_PROJECT_VERSION in the project
+	     changed nothing in the shipped bundle: release.sh read the new numbers
+	     from the project and registered them in the appcast, while every build
+	     kept reporting 1.0 (1). Sparkle compares the appcast's build against the
+	     installed CFBundleVersion, so it offered the same update forever and no
+	     install ever appeared to change version. -->
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<!-- Regular app: dock icon + window. (Voz also keeps a menu-bar item.) -->
+	<key>LSUIElement</key>
+	<false/>
+	<key>LSMinimumSystemVersion</key>
+	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<!-- Shown when Voz first asks for microphone access. -->
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Voz records your voice locally to transcribe it into text. Audio never leaves your Mac.</string>
+
+	<!-- No Sparkle keys in the open-source build. There is no update feed and no
+	     signing key here, so this app never contacts a server of any kind.
+	     Update it the way you built it: git pull, then Run. -->
+</dict>
+</plist>

@@ -1,0 +1,356 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CC0000000000000000000001 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000001 /* main.swift */; };
+		CC0000000000000000000002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000002 /* AppDelegate.swift */; };
+		CC0000000000000000000003 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000003 /* Settings.swift */; };
+		CC0000000000000000000004 /* HotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000004 /* HotKeyManager.swift */; };
+		CC0000000000000000000005 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000005 /* AudioRecorder.swift */; };
+		CC0000000000000000000006 /* Transcriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000006 /* Transcriber.swift */; };
+		CC0000000000000000000007 /* Paster.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000007 /* Paster.swift */; };
+		CC0000000000000000000024 /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000024 /* Updater.swift */; };
+		CC0000000000000000000008 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000008 /* Sound.swift */; };
+		CC0000000000000000000009 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000009 /* Preferences.swift */; };
+		CC000000000000000000000C /* AudioConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000000000000000000000C /* AudioConverter.swift */; };
+		CC000000000000000000000D /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000000000000000000000D /* AppState.swift */; };
+		CC000000000000000000000E /* VozUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000000000000000000000E /* VozUI.swift */; };
+		CC0000000000000000000012 /* LLM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000012 /* LLM.swift */; };
+		CC0000000000000000000013 /* MeetingRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000013 /* MeetingRecorder.swift */; };
+		CC0000000000000000000014 /* Diarizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000014 /* Diarizer.swift */; };
+		CC0000000000000000000022 /* VoiceBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000022 /* VoiceBar.swift */; };
+		CC000000000000000000000F /* VozLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = BB000000000000000000000F /* VozLogo.png */; };
+		CC0000000000000000000023 /* MenuBarLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000023 /* MenuBarLogo.png */; };
+		CC0000000000000000000011 /* Voz.icns in Resources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000011 /* Voz.icns */; };
+		CC0000000000000000000020 /* ggml-base.bin in Resources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000020 /* ggml-base.bin */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AA0000000000000000000006 /* Voz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voz.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB0000000000000000000001 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		BB0000000000000000000002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BB0000000000000000000003 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		BB0000000000000000000004 /* HotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyManager.swift; sourceTree = "<group>"; };
+		BB0000000000000000000005 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		BB0000000000000000000006 /* Transcriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transcriber.swift; sourceTree = "<group>"; };
+		BB0000000000000000000007 /* Paster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paster.swift; sourceTree = "<group>"; };
+		BB0000000000000000000024 /* Updater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
+		BB0000000000000000000008 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
+		BB0000000000000000000009 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		BB000000000000000000000C /* AudioConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioConverter.swift; sourceTree = "<group>"; };
+		BB000000000000000000000D /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		BB000000000000000000000E /* VozUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VozUI.swift; sourceTree = "<group>"; };
+		BB0000000000000000000012 /* LLM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLM.swift; sourceTree = "<group>"; };
+		BB0000000000000000000013 /* MeetingRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingRecorder.swift; sourceTree = "<group>"; };
+		BB0000000000000000000014 /* Diarizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diarizer.swift; sourceTree = "<group>"; };
+		BB0000000000000000000022 /* VoiceBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceBar.swift; sourceTree = "<group>"; };
+		BB000000000000000000000F /* VozLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VozLogo.png; sourceTree = "<group>"; };
+		BB0000000000000000000023 /* MenuBarLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuBarLogo.png; sourceTree = "<group>"; };
+		BB0000000000000000000011 /* Voz.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Voz.icns; sourceTree = "<group>"; };
+		BB0000000000000000000020 /* ggml-base.bin */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Models/ggml-base.bin"; sourceTree = "<group>"; };
+		BB000000000000000000000A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB000000000000000000000B /* Voz.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Voz.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA000000000000000000000E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA0000000000000000000002 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000004 /* Voz */,
+				AA0000000000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000006 /* Voz.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000004 /* Voz */ = {
+			isa = PBXGroup;
+			children = (
+				BB0000000000000000000001 /* main.swift */,
+				BB0000000000000000000002 /* AppDelegate.swift */,
+				BB0000000000000000000003 /* Settings.swift */,
+				BB0000000000000000000004 /* HotKeyManager.swift */,
+				BB0000000000000000000005 /* AudioRecorder.swift */,
+				BB0000000000000000000006 /* Transcriber.swift */,
+				BB0000000000000000000007 /* Paster.swift */,
+				BB0000000000000000000024 /* Updater.swift */,
+				BB0000000000000000000008 /* Sound.swift */,
+				BB0000000000000000000009 /* Preferences.swift */,
+				BB000000000000000000000C /* AudioConverter.swift */,
+				BB000000000000000000000D /* AppState.swift */,
+				BB000000000000000000000E /* VozUI.swift */,
+				BB0000000000000000000012 /* LLM.swift */,
+				BB0000000000000000000013 /* MeetingRecorder.swift */,
+				BB0000000000000000000014 /* Diarizer.swift */,
+				BB0000000000000000000022 /* VoiceBar.swift */,
+				BB000000000000000000000F /* VozLogo.png */,
+				BB0000000000000000000023 /* MenuBarLogo.png */,
+				BB0000000000000000000011 /* Voz.icns */,
+				BB0000000000000000000020 /* ggml-base.bin */,
+				BB000000000000000000000A /* Info.plist */,
+				BB000000000000000000000B /* Voz.entitlements */,
+			);
+			path = Voz;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA0000000000000000000005 /* Voz */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA0000000000000000000008 /* Build configuration list for PBXNativeTarget "Voz" */;
+			buildPhases = (
+				AA000000000000000000000D /* Sources */,
+				AA000000000000000000000E /* Frameworks */,
+				AA000000000000000000000F /* Resources */,
+				AA0000000000000000000021 /* Embed Engines */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Voz;
+			productName = Voz;
+			packageProductDependencies = (
+			);
+			productReference = AA0000000000000000000006 /* Voz.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA0000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					AA0000000000000000000005 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = AA0000000000000000000007 /* Build configuration list for PBXProject "Voz" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AA0000000000000000000002 /* Root */;
+			productRefGroup = AA0000000000000000000003 /* Products */;
+			packageReferences = (
+			);
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA0000000000000000000005 /* Voz */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA000000000000000000000F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC000000000000000000000F /* VozLogo.png in Resources */,
+				CC0000000000000000000023 /* MenuBarLogo.png in Resources */,
+				CC0000000000000000000011 /* Voz.icns in Resources */,
+				CC0000000000000000000020 /* ggml-base.bin in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AA0000000000000000000021 /* Embed Engines */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Engines";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nSRC=\"$SRCROOT/Voz/Engine\"\nDEST=\"$TARGET_BUILD_DIR/$CONTENTS_FOLDER_PATH/Resources\"\n[ -d \"$SRC\" ] || { echo \"warning: no engine dir at $SRC, skipping\"; exit 0; }\nSIGN_ID=\"${EXPANDED_CODE_SIGN_IDENTITY:-${CODE_SIGN_IDENTITY:--}}\"\n[ -z \"$SIGN_ID\" ] && SIGN_ID=\"-\"\nif [ \"$CONFIGURATION\" = \"Release\" ]; then OPTS=\"--options runtime --timestamp\"; else OPTS=\"--timestamp=none\"; fi\nfor eng in whisper llama; do\n  mkdir -p \"$DEST/engine-$eng\"\n  cp -f \"$SRC/$eng/\"* \"$DEST/engine-$eng/\"\n  for f in \"$DEST/engine-$eng/\"*; do\n    codesign --force $OPTS --sign \"$SIGN_ID\" \"$f\" || codesign --force --sign - \"$f\"\n  done\ndone\necho \"embedded engines signed ($CONFIGURATION) with $SIGN_ID\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA000000000000000000000D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC0000000000000000000001 /* main.swift in Sources */,
+				CC0000000000000000000002 /* AppDelegate.swift in Sources */,
+				CC0000000000000000000003 /* Settings.swift in Sources */,
+				CC0000000000000000000004 /* HotKeyManager.swift in Sources */,
+				CC0000000000000000000005 /* AudioRecorder.swift in Sources */,
+				CC0000000000000000000006 /* Transcriber.swift in Sources */,
+				CC0000000000000000000007 /* Paster.swift in Sources */,
+				CC0000000000000000000008 /* Sound.swift in Sources */,
+				CC0000000000000000000009 /* Preferences.swift in Sources */,
+				CC000000000000000000000C /* AudioConverter.swift in Sources */,
+				CC000000000000000000000D /* AppState.swift in Sources */,
+				CC000000000000000000000E /* VozUI.swift in Sources */,
+				CC0000000000000000000012 /* LLM.swift in Sources */,
+				CC0000000000000000000013 /* MeetingRecorder.swift in Sources */,
+				CC0000000000000000000014 /* Diarizer.swift in Sources */,
+				CC0000000000000000000022 /* VoiceBar.swift in Sources */,
+				CC0000000000000000000024 /* Updater.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AA0000000000000000000009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AA000000000000000000000A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		AA000000000000000000000B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Voz/Voz.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 15;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Voz/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.14;
+				PRODUCT_BUNDLE_IDENTIFIER = com.voz.Voz;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		AA000000000000000000000C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Voz/Voz.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 15;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				OTHER_CODE_SIGN_FLAGS = "--timestamp";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Voz/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.14;
+				PRODUCT_BUNDLE_IDENTIFIER = com.voz.Voz;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA0000000000000000000007 /* Build configuration list for PBXProject "Voz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000000000000000000009 /* Debug */,
+				AA000000000000000000000A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA0000000000000000000008 /* Build configuration list for PBXNativeTarget "Voz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA000000000000000000000B /* Debug */,
+				AA000000000000000000000C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+
+	};
+	rootObject = AA0000000000000000000001 /* Project object */;
+}

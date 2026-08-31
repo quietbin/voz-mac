@@ -1,0 +1,15 @@
+# The speech model — 147 MB, over GitHub's 100 MB per-file limit.
+# scripts/setup.sh fetches it.
+Voz/Models/*.bin
+
+# Engine binaries, if you choose to vendor them locally. Built by setup.sh.
+Voz/Engine/
+
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xcworkspace/xcuserdata/
+
+.DS_Store

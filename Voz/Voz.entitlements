@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!--
+	  App Sandbox is intentionally DISABLED.
+
+	  Voz needs to:
+	    • launch an arbitrary external binary (whisper.cpp) via Process(), and
+	    • post ⌘V keystrokes into other apps via CGEvent.
+	  Both are blocked by the sandbox. Keeping the sandbox off is the simplest
+	  path for a personal/local tool. (Microphone + Accessibility are still
+	  gated by macOS TCC permission prompts at runtime.)
+	-->
+	<key>com.apple.security.app-sandbox</key>
+	<false/>
+
+	<!--
+	  REQUIRED for the microphone, and not because of the sandbox.
+
+	  Release builds set ENABLE_HARDENED_RUNTIME = YES (Debug sets NO), and the
+	  Hardened Runtime blocks audio input unless this entitlement is present.
+	  Without it AVCaptureDevice.requestAccess returns false *immediately*: no
+	  permission prompt is shown, and the app never appears in System Settings ▸
+	  Privacy & Security ▸ Microphone at all — there is nothing to switch on.
+
+	  That is why dictation worked perfectly when run from Xcode and was dead in
+	  the notarized DMG. Nothing about signing or notarization reports this: the
+	  build, the signature, the staple and Gatekeeper all pass. Do not remove it.
+	-->
+	<key>com.apple.security.device.audio-input</key>
+	<true/>
+</dict>
+</plist>
