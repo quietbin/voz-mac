@@ -4,8 +4,9 @@
 //
 //  Captures a meeting entirely on-device: the other participants' audio (system
 //  audio, via ScreenCaptureKit — no bot joins the call) plus your microphone.
-//  Each source is written to its own file; they're mixed afterwards with ffmpeg
-//  and transcribed locally by whisper. Requires Screen Recording permission
+//  Each source is written to its own file; AppDelegate then mixes them with
+//  AudioConverter.mixToWav (AVFoundation — there is no ffmpeg dependency
+//  anywhere in Voz) and transcribes locally. Requires Screen Recording permission
 //  (macOS gates system-audio capture behind it) + Microphone permission.
 //
 

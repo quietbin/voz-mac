@@ -1,8 +1,14 @@
 # Voz
 
-A macOS menu-bar app that turns speech into text **entirely on your Mac**.
+Speech to text on your Mac, that never leaves your Mac.
 Press a hotkey, talk, press it again — the words appear wherever your cursor is.
 No account, no subscription, no audio leaving the machine.
+
+![Voz dictating into Notes: the waveform ripples while speaking, then the transcribed sentence appears in the note](media/demo.gif)
+
+Nothing in that clip is talking to a server. The Whisper model is inside the
+app bundle, so it works the same with the wifi off — which is the fastest way
+to check the claim rather than take it on trust.
 
 This is the complete source. It builds into the same app that is sold at
 [vozwhisper.com](https://www.vozwhisper.com).
@@ -19,7 +25,7 @@ Both are honest options, so here is the actual difference:
 | Setup | Xcode, cmake, ~20 min of compiling | Drag to Applications |
 | Signed & notarized by Apple | No — you'll click through Gatekeeper | Yes |
 | Updates | `git pull`, build again | Installs itself |
-| Network requests | **Zero.** No update feed in this build | One a day, version number only, switchable off |
+| Network requests | No update feed in this build. The only egress is the optional AI model download, if you ask for it | One a day, version number only, switchable off — plus that same optional download |
 
 If you are comfortable with the four commands below, build it — that is what
 this repo is for, and nothing is held back. If "install cmake and wait for
@@ -57,7 +63,8 @@ optional AI features.
 - **History** — everything you've dictated, searchable.
 - **Optional local AI** — summaries, meeting follow-ups and speaker separation
   from a Qwen 2.5 model you download once and which then runs on your Mac.
-  Off until you turn it on.
+  Off until you turn it on. Speaker separation works by reading the transcript
+  and inferring turns from the wording, not by telling voices apart.
 
 ## How the privacy claim actually holds
 
@@ -69,10 +76,11 @@ discarded the moment it becomes text.
 The easiest way to verify it is to stop reading and turn on Airplane Mode.
 Everything still works.
 
-This build goes further than the paid one: it has no updater, so it makes **no
-network requests at all**. The only thing that ever touches the network is the
-optional AI model download, which happens once, only if you ask for it, and
-carries nothing but the request for the file.
+This build goes further than the paid one: it has no updater, so it never
+phones home about versions. The **one** thing that can touch the network is the
+optional AI model download — once per model, only if you ask for it, carrying
+nothing but the request for the file. Decline the AI features and this build
+makes no network requests at all.
 
 ## What's not here
 

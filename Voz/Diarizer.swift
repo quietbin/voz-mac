@@ -2,13 +2,27 @@
 //  Diarizer.swift
 //  Voz
 //
-//  Speaker diarization ("who said what") for meetings, fully local via
-//  sherpa-onnx. The two ONNX models are BUNDLED with the app (no download), so
-//  it just works. We shell out to the sherpa-onnx diarization binary, get back
-//  speaker time-segments, and merge them with the whisper transcript by time.
+//  ⚠️ NOT WIRED UP. This file is a parked spike, not a shipping feature — and
+//  the description below is aspirational, so read it as a plan rather than as
+//  a statement of what happens today. As of 1.14:
 //
-//  The engine binary is auto-detected at ~/sherpa-onnx (built from source like
-//  whisper.cpp). For a shipping build it would be bundled alongside the models.
+//    • Nothing in the target references `Diarizer`.
+//    • The two ONNX models are NOT bundled. `segmentationModel` /
+//      `embeddingModel` look for diarize-seg.onnx and diarize-embed.onnx in
+//      the app bundle; no .onnx file exists anywhere in app/.
+//    • The binary is NOT bundled either — `binaryCandidates` only checks
+//      ~/sherpa-onnx and Homebrew, i.e. developer machines.
+//
+//  So `isAvailable` is false on every customer's Mac. The speaker feature that
+//  actually ships is LocalLLM.separateTranscript, which infers turns from the
+//  wording of the transcript — not acoustics. Don't let site copy imply
+//  otherwise. To finish this: bundle the sherpa binary and both models the way
+//  Engine/whisper and Engine/llama already are, then call it from the meeting
+//  pipeline. Otherwise delete it.
+//
+//  The intent was: speaker diarization ("who said what") for meetings, fully
+//  local via sherpa-onnx — shell out to the diarization binary, get back
+//  speaker time-segments, and merge them with the whisper transcript by time.
 //
 
 import Foundation

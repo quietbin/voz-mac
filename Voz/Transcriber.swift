@@ -61,8 +61,9 @@ final class Transcriber {
         }
     }
 
-    /// Transcribes any audio/video file: converts it to 16 kHz mono WAV with
-    /// ffmpeg first, then runs whisper. Off the main thread; completes on main.
+    /// Transcribes any audio/video file: converts it to 16 kHz mono WAV via
+    /// AudioConverter (AVFoundation, not ffmpeg) first, then runs whisper.
+    /// Off the main thread; completes on main.
     func transcribeFile(_ fileURL: URL, completion: @escaping (Result<String, Error>) -> Void) {
         DispatchQueue.global(qos: .userInitiated).async {
             do {
@@ -94,8 +95,8 @@ final class Transcriber {
         return lines.joined(separator: "\n")
     }
 
-    /// Transcribes a media file into timestamped segments (converts via ffmpeg
-    /// first). Used to interleave two streams by time.
+    /// Transcribes a media file into timestamped segments (converted first by
+    /// AudioConverter, via AVFoundation). Used to interleave two streams by time.
     func transcribeSegments(mediaURL: URL, modelPath: String? = nil,
                             completion: @escaping (Result<[Segment], Error>) -> Void) {
         DispatchQueue.global(qos: .userInitiated).async {
