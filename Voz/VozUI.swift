@@ -626,6 +626,8 @@ struct ShortcutChip: View {
     @EnvironmentObject var app: AppState
     @State private var recording = false
     @State private var monitor: Any?
+    @State private var flagsMonitor: Any?
+    @State private var sawBareModifiers = false
 
     var body: some View {
         Button { toggle() } label: {
@@ -645,14 +647,43 @@ struct ShortcutChip: View {
 
     private func start() {
         recording = true
+        sawBareModifiers = false
+
+        // Pressing a modifier on its own never produces a .keyDown, so someone
+        // trying to make Command itself the trigger got no key, no beep and no
+        // explanation -- the recorder just sat there. Watch .flagsChanged too,
+        // and say something once they let go.
+        flagsMonitor = NSEvent.addLocalMonitorForEvents(matching: [.flagsChanged]) { event in
+            let held = HotKey.carbonModifiers(from: event.modifierFlags) != 0
+            if held {
+                self.sawBareModifiers = true
+            } else if self.sawBareModifiers {
+                self.sawBareModifiers = false
+                self.app.flash("A modifier on its own isn't a shortcut. Hold it with a letter or number — or switch the trigger to Double-tap Fn.")
+            }
+            return event
+        }
+
         monitor = NSEvent.addLocalMonitorForEvents(matching: [.keyDown]) { event in
             if event.keyCode == UInt16(kVK_Escape) { self.stop(); return nil }
             let mods = HotKey.carbonModifiers(from: event.modifierFlags)
             let isFunctionKey = (kVK_F1...kVK_F20).contains(Int(event.keyCode))
             guard mods != 0 || isFunctionKey else { NSSound.beep(); return nil }
+
+            // Keep the old shortcut so a combination macOS refuses can be put
+            // back. Without this the UI showed the new one as set while the
+            // registration had silently failed, leaving no working hotkey.
+            let previous = Settings.shared.hotKey
+            let previousMode = Settings.shared.triggerMode
+            self.sawBareModifiers = false
+
             Settings.shared.hotKey = HotKey(keyCode: UInt32(event.keyCode), carbonModifiers: mods)
             Settings.shared.triggerMode = .hotKey
-            self.app.reloadHotkey()
+            if !self.app.reloadHotkey() {
+                Settings.shared.hotKey = previous
+                Settings.shared.triggerMode = previousMode
+                self.app.reloadHotkey()
+            }
             self.stop()
             return nil   // consume the keystroke
         }
@@ -660,7 +691,9 @@ struct ShortcutChip: View {
 
     private func stop() {
         recording = false
+        sawBareModifiers = false
         if let m = monitor { NSEvent.removeMonitor(m); monitor = nil }
+        if let m = flagsMonitor { NSEvent.removeMonitor(m); flagsMonitor = nil }
     }
 }
 

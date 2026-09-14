@@ -107,16 +107,23 @@ final class HotKeyManager {
     // Singleton-ish reference so the C event handler can find us.
     fileprivate static weak var active: HotKeyManager?
 
-    func start() {
+    /// Called when a shortcut could not be registered, with a human-readable
+    /// reason. Wired to the UI so a combo macOS has already claimed says so
+    /// instead of appearing to work.
+    var onRegistrationFailed: ((String) -> Void)?
+
+    @discardableResult
+    func start() -> Bool {
         HotKeyManager.active = self
         stop() // clear any previous registration
         switch Settings.shared.triggerMode {
-        case .hotKey:      registerCarbonHotKey()
-        case .fnDoubleTap: installFnMonitor()
+        case .hotKey:      return registerCarbonHotKey()
+        case .fnDoubleTap: installFnMonitor(); return true
         }
     }
 
-    func restart() { start() }
+    @discardableResult
+    func restart() -> Bool { start() }
 
     func stop() {
         if let ref = hotKeyRef { UnregisterEventHotKey(ref); hotKeyRef = nil }
@@ -127,7 +134,8 @@ final class HotKeyManager {
 
     // MARK: - Carbon hotkey
 
-    private func registerCarbonHotKey() {
+    @discardableResult
+    private func registerCarbonHotKey() -> Bool {
         // Install a single application-level handler for hotkey-pressed events.
         var eventType = EventTypeSpec(eventClass: OSType(kEventClassKeyboard),
                                       eventKind: UInt32(kEventHotKeyPressed))
@@ -142,9 +150,32 @@ final class HotKeyManager {
             return noErr
         }, 1, &eventType, nil, &eventHandlerRef)
 
+        // RegisterEventHotKey's OSStatus used to be discarded here, and that was
+        // a real bug: macOS refuses a combination another app already owns
+        // system-wide (Cmd-Space is Spotlight, and it is the first thing people
+        // try). The registration failed, Settings had already stored the new
+        // shortcut, and the UI showed it as set — so the app looked like it had
+        // accepted a hotkey that could never fire, with nothing reported
+        // anywhere. Report it instead, and let the caller put the old one back.
         let hk = Settings.shared.hotKey
-        RegisterEventHotKey(hk.keyCode, hk.carbonModifiers, hotKeyID,
-                            GetApplicationEventTarget(), 0, &hotKeyRef)
+        let status = RegisterEventHotKey(hk.keyCode, hk.carbonModifiers, hotKeyID,
+                                         GetApplicationEventTarget(), 0, &hotKeyRef)
+        guard status == noErr else {
+            hotKeyRef = nil
+            NSLog("Voz: could not register hotkey %@ (OSStatus %d)", hk.displayString, status)
+            onRegistrationFailed?(Self.failureReason(status, for: hk))
+            return false
+        }
+        return true
+    }
+
+    /// eventHotKeyExistsErr is the case worth naming precisely, because the fix
+    /// is "pick another combination" rather than anything the user can debug.
+    private static func failureReason(_ status: OSStatus, for hk: HotKey) -> String {
+        if status == OSStatus(eventHotKeyExistsErr) {
+            return "\(hk.displayString) is already used by macOS or another app. Pick a different combination."
+        }
+        return "Couldn't set \(hk.displayString) as the shortcut. Pick a different combination."
     }
 
     // MARK: - Fn double-tap

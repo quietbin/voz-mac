@@ -47,6 +47,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         setupStatusItem()
         wireAppState()
         hotKeys.onTrigger = { [weak self] in self?.handleTrigger() }
+        hotKeys.onRegistrationFailed = { [weak self] reason in
+            DispatchQueue.main.async { self?.app.flash(reason) }
+        }
         hotKeys.start()
 
         showMainWindow()
@@ -80,8 +83,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         app.onTranscribeFiles = { [weak self] urls in self?.transcribeFiles(urls) }
         app.onOpenShortcutPrefs = { [weak self] in self?.openPreferences() }
         app.onReloadHotkey = { [weak self] in
-            self?.hotKeys.restart()
+            let ok = self?.hotKeys.restart() ?? false
             self?.refreshHotkeyInfo()
+            return ok
         }
         app.onStartMeeting = { [weak self] in self?.startMeeting() }
         app.onStopMeeting = { [weak self] notes in self?.stopMeeting(notes: notes) }

@@ -117,7 +117,7 @@ final class AppState: ObservableObject {
     var onToggleRecord: (() -> Void)?
     var onTranscribeFiles: (([URL]) -> Void)?
     var onOpenShortcutPrefs: (() -> Void)?
-    var onReloadHotkey: (() -> Void)?       // re-register the global hotkey after a change
+    var onReloadHotkey: (() -> Bool)?       // re-register the global hotkey; false if macOS refused it
     var onStartMeeting: (() -> Void)?
     var onStopMeeting: ((String) -> Void)?  // passes the user's typed notes
     var onUpdateActivationPolicy: (() -> Void)?   // dock icon vs menu-bar-only
@@ -140,7 +140,8 @@ final class AppState: ObservableObject {
     func toggleRecord() { onToggleRecord?() }
     func transcribeFiles(_ urls: [URL]) { onTranscribeFiles?(urls) }
     func openShortcutPrefs() { onOpenShortcutPrefs?() }
-    func reloadHotkey() { onReloadHotkey?() }
+    @discardableResult
+    func reloadHotkey() -> Bool { onReloadHotkey?() ?? false }
     func startMeeting() { onStartMeeting?() }
     func stopMeeting(notes: String) { onStopMeeting?(notes) }
 
