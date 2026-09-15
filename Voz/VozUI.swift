@@ -1802,14 +1802,24 @@ struct PathField: View {
 /// NSViewRepresentable wrapper around the AppKit KeyRecorderControl so the
 /// shortcut recorder lives inline in the SwiftUI settings.
 struct ShortcutRecorder: NSViewRepresentable {
-    var onChange: () -> Void
+    /// Returns false when macOS refused the combination. This is the recorder
+    /// the Settings screen actually uses, so without the result a shortcut the
+    /// system had already claimed would quietly replace a working one and
+    /// leave no way to trigger dictation at all.
+    var onChange: () -> Bool
 
     func makeNSView(context: Context) -> KeyRecorderControl {
         let c = KeyRecorderControl()
         c.hotKey = Settings.shared.hotKey
-        c.onCapture = { hk in
+        c.onCapture = { [weak c] hk in
+            let previous = Settings.shared.hotKey
             Settings.shared.hotKey = hk
-            onChange()
+            guard onChange() else {
+                Settings.shared.hotKey = previous
+                c?.hotKey = previous
+                _ = onChange()
+                return
+            }
         }
         return c
     }
