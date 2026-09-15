@@ -1479,6 +1479,14 @@ struct SettingsView: View {
                                    help: "Click the box, then press the keys you want (e.g. ⌥Space).") {
                             ShortcutRecorder { app.reloadHotkey() }.frame(width: 220, height: 28)
                         }
+                        // macOS hands its own shortcuts to the system before any
+                        // app sees them, so a reserved combination produces no
+                        // keypress here at all — the box just sits there looking
+                        // broken. Say so rather than letting people conclude the
+                        // recorder is faulty.
+                        Text("If nothing appears when you press a combination, macOS has reserved it — ⌘Space opens Spotlight, for instance, and never reaches Voz. Pick another, or switch to Double-tap Fn.")
+                            .font(.system(size: 11.5)).foregroundStyle(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
                     } else {
                         Text("Quickly press the Fn (globe) key twice to start or stop. Needs Input Monitoring permission the first time.")
                             .font(.system(size: 11.5)).foregroundStyle(.secondary)
