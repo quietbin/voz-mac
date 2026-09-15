@@ -667,7 +667,7 @@ struct ShortcutChip: View {
         monitor = NSEvent.addLocalMonitorForEvents(matching: [.keyDown]) { event in
             if event.keyCode == UInt16(kVK_Escape) { self.stop(); return nil }
             let mods = HotKey.carbonModifiers(from: event.modifierFlags)
-            let isFunctionKey = (kVK_F1...kVK_F20).contains(Int(event.keyCode))
+            let isFunctionKey = HotKey.isFunctionKey(event.keyCode)
             guard mods != 0 || isFunctionKey else { NSSound.beep(); return nil }
 
             // Keep the old shortcut so a combination macOS refuses can be put

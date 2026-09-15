@@ -62,6 +62,25 @@ struct HotKey: Equatable {
     }
 
     /// Convert Cocoa modifier flags (from an NSEvent) to Carbon modifier mask.
+    /// Carbon's function-key virtual codes are NOT contiguous: kVK_F1 is 0x7A
+    /// and kVK_F20 is 0x5A, with the rest scattered between 0x40 and 0x78. The
+    /// obvious `(kVK_F1...kVK_F20)` is therefore the range 122...90, which is
+    /// not a valid range — Swift traps with "Range requires lowerBound <=
+    /// upperBound" the moment it is constructed. Both shortcut recorders did
+    /// exactly that on every keyDown, so pressing any key while recording a
+    /// shortcut crashed the app every time. Enumerate the codes instead.
+    static let functionKeyCodes: Set<Int> = [
+        kVK_F1,  kVK_F2,  kVK_F3,  kVK_F4,  kVK_F5,  kVK_F6,  kVK_F7,
+        kVK_F8,  kVK_F9,  kVK_F10, kVK_F11, kVK_F12, kVK_F13, kVK_F14,
+        kVK_F15, kVK_F16, kVK_F17, kVK_F18, kVK_F19, kVK_F20,
+    ]
+
+    /// True for a bare function key, which is the one case a shortcut is
+    /// allowed to have no modifier.
+    static func isFunctionKey(_ keyCode: UInt16) -> Bool {
+        functionKeyCodes.contains(Int(keyCode))
+    }
+
     static func carbonModifiers(from flags: NSEvent.ModifierFlags) -> UInt32 {
         var m: UInt32 = 0
         if flags.contains(.command) { m |= UInt32(cmdKey) }

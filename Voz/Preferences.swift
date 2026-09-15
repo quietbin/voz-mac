@@ -356,7 +356,7 @@ final class KeyRecorderControl: NSButton {
         let mods = HotKey.carbonModifiers(from: event.modifierFlags)
         // Require at least one modifier (avoids capturing a bare letter that
         // would then fire constantly). Function keys are allowed bare.
-        let isFunctionKey = (kVK_F1...kVK_F20).contains(Int(event.keyCode))
+        let isFunctionKey = HotKey.isFunctionKey(event.keyCode)
         guard mods != 0 || isFunctionKey else {
             NSSound.beep()
             return
